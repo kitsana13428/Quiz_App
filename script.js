@@ -5,7 +5,7 @@ const quizData = [
         b: "2",
         c: "3",
         d: "4",
-        correct: "b",
+        correct: "b"
     }, 
     {
         question: "1 - 1 = ?",
@@ -13,7 +13,7 @@ const quizData = [
         b: "2",
         c: "1",
         d: "0",
-        correct: "d",
+        correct: "d"
     },
     {
         question: "1 x 1 = ?",
@@ -21,9 +21,14 @@ const quizData = [
         b: "100",
         c: "1",
         d: "1000",
-        correct: "c",
+        correct: "c"
     },
     {
-        question: ""
+        question: "(1 + 1) + (1 + 1) = ?",
+        a: "2",
+        b: "4",
+        c: "6",
+        d: "8",
+        correct: "b"
     }
 ]
