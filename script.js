@@ -33,6 +33,8 @@ const quizData = [
     }
 ]
 
+const quiz = document.getElementById("quiz");
+const answersEls = document.querySelectorAll(".answer");
 const questionEl = document.getElementById("question"); /* สร้างตัวแปร คำตอบ */
 const a_text = document.getElementById("a_text");
 const b_text = document.getElementById("b_text");
@@ -46,6 +48,7 @@ let score = 0;
 loadQuiz();
 
 function loadQuiz() {
+    deselectAnswer();
     const currentQuizData = quizData[currentQuiz];
 
     questionEl.innerText = currentQuizData.question;
@@ -57,32 +60,36 @@ function loadQuiz() {
 }
 
 function getSelected() {
-    const answersEls = document.querySelectorAll(".answer");
-  
+    let answer = undefined;
 
     answersEls.forEach((answerEl) => {
         if(answerEl.checked){
-            return  answerEl.id;
+            answer = answerEl.id;
         }
     });
 
-    return undefined;
+    return answer;
+}
+
+function deselectAnswer() {
+    answersEls.forEach((answerEl) =>{
+        answerEl.checked = false;
+    });
 }
 
 submitBtn.addEventListener("click", () => {
     //เข็คคำตอบ
     const answer = getSelected();
     
-    currentQuiz++;
-
-    
-
-    if(answer){
-        if (currentQuiz < quizData.length){ //เมื่อคำถามหมด = เสร็จสิ้น
-            loadQuiz();
+    if (answer) {
+        if(answer === quizData[currentQuiz].correct){
+            score++;
+        } 
+        currentQuiz++;
+        if(currentQuiz < quizData.length) {        
+                loadQuiz();
         } else {
-            alert("You Finish!!");
+            quiz.innerHTML = `<h2>คุณได้คะแนน ${score}/${quizData.length} คะแนน</h2> <button onclick="location.reload()">เริ่มใหม่</button>`;
         }
     }
-
 });
